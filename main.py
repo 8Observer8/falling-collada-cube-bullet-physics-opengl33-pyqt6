@@ -45,7 +45,7 @@ class Object3D:
         self.normal_buffer = vert_buffers.normal_buffer
         self.tex_coord_buffer = vert_buffers.tex_coord_buffer
         self.amount_of_vertices = vert_buffers.amount_of_vertices
-        
+
         self.mvp_matrix_location = locations.mvp_matrix_location
         self.model_matrix_location = locations.model_matrix_location
         self.normal_matrix_location = locations.normal_matrix_location
@@ -171,11 +171,11 @@ class Window(QOpenGLWidget):
         self.program = QOpenGLShaderProgram()
         self.program.addShaderFromSourceCode(QOpenGLShader.ShaderTypeBit.Vertex, vertShaderSrc)
         self.program.addShaderFromSourceCode(QOpenGLShader.ShaderTypeBit.Fragment, fragShaderSrc)
-        self.program.link()
-        self.program.bind()
         self.program.bindAttributeLocation("aPosition", 0)
         self.program.bindAttributeLocation("aNormal", 1)
         self.program.bindAttributeLocation("aTexCoord", 2)
+        self.program.link()
+        self.program.bind()
         locations = Locations()
         self.program.bind()
         locations.mvp_matrix_location = self.program.uniformLocation("uMvpMatrix")
